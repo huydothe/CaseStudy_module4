@@ -40,6 +40,10 @@ class PageController {
         res.render('page/shopping-cart');
     }
     ;
+    checkOut(req, res, next) {
+        res.render('page/check-out');
+    }
+    ;
 }
 exports.PageController = PageController;
 //# sourceMappingURL=page.controller.js.map

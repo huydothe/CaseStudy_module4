@@ -11,6 +11,8 @@ const web_router_1 = __importDefault(require("./src/router/web.router"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const admin_router_1 = __importDefault(require("./src/router/admin.router"));
 const auth_router_1 = __importDefault(require("./src/router/auth.router"));
+const passport_1 = __importDefault(require("passport"));
+const express_session_1 = __importDefault(require("express-session"));
 dotenv_1.default.config();
 const port = process.env.port || 3000;
 const upload = (0, multer_1.default)();
@@ -19,6 +21,7 @@ app.use(express_1.default.static('./src/public'));
 app.set('view engine', 'ejs');
 app.set('views', './src/views');
 app.use(body_parser_1.default.json());
+app.use(passport_1.default.initialize());
 const DB_URL = process.env.mongoose_URL;
 mongoose_1.default.connect(DB_URL)
     .then(() => {
@@ -27,6 +30,12 @@ mongoose_1.default.connect(DB_URL)
     .catch(err => {
     console.log(`Connect fail, error: ${err.message}`);
 });
+app.use((0, express_session_1.default)({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false,
+}));
+app.use(passport_1.default.authenticate('session'));
 app.use('/', web_router_1.default);
 app.use('/', admin_router_1.default);
 app.use('/', auth_router_1.default);

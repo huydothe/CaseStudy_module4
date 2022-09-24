@@ -74,14 +74,14 @@
                             <ion-icon style="font-size: 80px; " name="logo-google"></ion-icon>
                         </a>
                     </div>
-                    <form action="/auth/login" method="post" enctype="multipart/form-data">
+                    <form action="/login" method="post" enctype="multipart/form-data">
                         <div class="group-input">
                             <label for="username">Username</label>
                             <input type="text" name="username" id="username" placeholder="Enter your username ..." required/>
                         </div>
                         <div class="group-input">
                             <label for="pass">Password</label>
-                            <input type="text" id="pass" name="password" placeholder="Enter your password ..." required />
+                            <input type="text" id="password" name="password" placeholder="Enter your password ..." required />
                         </div>
                         <div class="group-input gi-check">
                             <div class="gi-more">
@@ -98,8 +98,8 @@
                         </button>
                     </form>
                     <div class="switch-login">
-                        <a href="/auth/register" class="or-login"
-                        >Or Create An Account</a
+                        <a href="/register" class="or-login"
+                        >Create An Account</a
                         >
                     </div>
                 </div>

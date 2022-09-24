@@ -39,4 +39,8 @@ export class PageController {
     shoppingCart(req: Request, res: Response, next: NextFunction){
         res.render('page/shopping-cart');
     };
+
+    checkOut(req: Request, res: Response, next: NextFunction){
+        res.render('page/check-out');
+    };
 }

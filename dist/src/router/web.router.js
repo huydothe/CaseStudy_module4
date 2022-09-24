@@ -22,6 +22,9 @@ wedRouter.get('/page/shopping-cart', (req, res, next) => {
 wedRouter.get('/page/blog-detail', (req, res, next) => {
     page.showBlogDetail(req, res, next);
 });
+wedRouter.get('/page/check-out', (req, res, next) => {
+    page.checkOut(req, res, next);
+});
 wedRouter.get('/shop', (req, res, next) => {
     page.showShop(req, res, next);
 });

@@ -8,9 +8,18 @@ class AuthController {
         res.render('page/login/login');
     }
     ;
+    loginUser(req, res, next) {
+        let data = req.body;
+        console.log(data);
+    }
+    ;
     showFormRegister(req, res, next) {
         res.render('page/login/register');
     }
+    ;
+    registerUser(req, res, next) {
+    }
+    ;
 }
 exports.AuthController = AuthController;
 //# sourceMappingURL=auth.controller.js.map
