@@ -1,13 +1,5 @@
 import mongoose, { Schema, model } from "mongoose";
-
-interface IUser {
-  username: string;
-  email: string;
-  password: string;
-  facebook_id: string;
-  google_id: string;
-  role: string;
-}
+import {IUser} from "../interface/IUser";
 
 const userSchema = new Schema<IUser>({
     username: {
@@ -23,8 +15,8 @@ const userSchema = new Schema<IUser>({
     facebook_id: String,
     google_id: String,
     role: {
-        type:String,
-        required : true
+        type : Schema.Types.ObjectId,
+        ref : 'Role'
     },
 });
 
