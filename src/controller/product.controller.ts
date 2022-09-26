@@ -61,7 +61,7 @@ export class ProductController{
 
     async editProduct(req: Request, res: Response, next: NextFunction){
         let categories = await Category.find();
-        let product = await ProductModel.findById(req.params.id);
+        let product = await ProductModel.findById({_id : req.params.id});
         res.render('admin/edit-product',{categories : categories , product : product})
     }
 

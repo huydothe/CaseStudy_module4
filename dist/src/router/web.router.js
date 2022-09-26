@@ -26,7 +26,9 @@ wedRouter.get('/page/check-out', (req, res, next) => {
     page.checkOut(req, res, next);
 });
 wedRouter.get('/shop', (req, res, next) => {
-    page.showShop(req, res, next);
+    page.showShop(req, res, next).catch(err => {
+        console.log(err.message);
+    });
 });
 wedRouter.get('/shop/men', (req, res, next) => {
     page.showMenShop(req, res, next);
@@ -36,6 +38,11 @@ wedRouter.get('/shop/women', (req, res, next) => {
 });
 wedRouter.get('/shop/kids', (req, res, next) => {
     page.showKidsShop(req, res, next);
+});
+wedRouter.get('/page/:id/product-detail', (req, res, next) => {
+    page.showProductDetail(req, res, next).catch(err => {
+        console.log(err.message);
+    });
 });
 exports.default = wedRouter;
 //# sourceMappingURL=web.router.js.map

@@ -44,7 +44,7 @@ class ProductController {
     }
     async editProduct(req, res, next) {
         let categories = await category_model_1.default.find();
-        let product = await products_model_1.default.findById(req.params.id);
+        let product = await products_model_1.default.findById({ _id: req.params.id });
         res.render('admin/edit-product', { categories: categories, product: product });
     }
     async edit(req, res, next) {
