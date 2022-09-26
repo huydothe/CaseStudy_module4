@@ -63,6 +63,7 @@
             <table class="table table-striped">
                 <div style="margin-bottom: 20px">
                     <a href="/admin/create/product" class="btn btn-primary">Create a product</a>
+                    <a href="/admin/list" class="btn btn-warning">Back to admin</a>
                 </div>
                 <thead class="thead-light">
                 <tr>
@@ -72,6 +73,7 @@
                     <th scope="col">Author</th>
                     <th scope="col">Made in</th>
                     <th scope="col">Category</th>
+                    <th></th>
                     <th></th>
                 </tr>
                 </thead>
@@ -85,6 +87,7 @@
                         <td><%= item.made_in %></td>
                         <td><%= item.category.name + '' %></td>
                         <td><a href="/admin/product/<%=item._id%>/delete" class="btn btn-danger">Delete</a></td>
+                        <td><a href="/admin/product/<%=item._id%>/update" class="btn btn-primary">Edit</a></td>
                     </tr>
                 <%})%>
                 </tbody>

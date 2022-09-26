@@ -9,9 +9,12 @@ import adminRouter from "./src/router/admin.router";
 import authRouter from "./src/router/auth.router";
 import passport from "passport";
 import session from "express-session";
+import {AuthCheck} from "./src/middleware/auth.check";
+import fileUpload from 'express-fileupload';
 
 dotenv.config();
 const port = process.env.port || 3000;
+const authCheck = new AuthCheck();
 const upload = multer();
 const app = express();
 
@@ -19,6 +22,9 @@ app.use(express.static('./src/public'))
 app.set('view engine', 'ejs');
 app.set('views','./src/views');
 app.use(bodyParser.json());
+app.use(fileUpload({
+    createParentPath: true
+}));
 app.use(passport.initialize());
 
 

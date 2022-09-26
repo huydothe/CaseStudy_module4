@@ -5,11 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const adminRouter = express_1.default.Router();
-const multer_1 = __importDefault(require("multer"));
 const admin_controller_1 = require("../controller/admin.controller");
 const product_controller_1 = require("../controller/product.controller");
 const checkPermission_middleware_1 = require("../middleware/checkPermission.middleware");
-const upload = (0, multer_1.default)();
 const admin = new admin_controller_1.AdminController();
 const product = new product_controller_1.ProductController();
 const permission = new checkPermission_middleware_1.CheckPermissionMiddleware();
@@ -21,7 +19,7 @@ adminRouter.get('/admin/create/product', (req, res, next) => {
         console.log(err.message);
     });
 });
-adminRouter.post('/admin/create/product', upload.single('image'), (req, res, next) => {
+adminRouter.post('/admin/create/product', (req, res, next) => {
     product.store(req, res, next).catch(err => {
         console.log(err.message);
     });
@@ -33,6 +31,16 @@ adminRouter.get('/admin/list/product', (req, res, next) => {
 });
 adminRouter.get('/admin/product/:id/delete', (req, res, next) => {
     product.deleteProduct(req, res, next).catch(err => {
+        console.log(err.message);
+    });
+});
+adminRouter.get('/admin/product/:id/update', (req, res, next) => {
+    product.editProduct(req, res, next).catch(err => {
+        console.log(err.message);
+    });
+});
+adminRouter.post('/admin/product/:id/update', (req, res, next) => {
+    product.edit(req, res, next).catch(err => {
         console.log(err.message);
     });
 });

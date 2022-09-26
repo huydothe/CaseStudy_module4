@@ -13,14 +13,20 @@ const admin_router_1 = __importDefault(require("./src/router/admin.router"));
 const auth_router_1 = __importDefault(require("./src/router/auth.router"));
 const passport_1 = __importDefault(require("passport"));
 const express_session_1 = __importDefault(require("express-session"));
+const auth_check_1 = require("./src/middleware/auth.check");
+const express_fileupload_1 = __importDefault(require("express-fileupload"));
 dotenv_1.default.config();
 const port = process.env.port || 3000;
+const authCheck = new auth_check_1.AuthCheck();
 const upload = (0, multer_1.default)();
 const app = (0, express_1.default)();
 app.use(express_1.default.static('./src/public'));
 app.set('view engine', 'ejs');
 app.set('views', './src/views');
 app.use(body_parser_1.default.json());
+app.use((0, express_fileupload_1.default)({
+    createParentPath: true
+}));
 app.use(passport_1.default.initialize());
 const DB_URL = process.env.mongoose_URL;
 mongoose_1.default.connect(DB_URL)

@@ -16,6 +16,7 @@ passport.deserializeUser(function(user : any, cb) {
 });
 
 passport.use(new LocalStrategy(async function verify(username : any, password : any, cb : any){
+    console.log('check')
     let userLogin = await UserModel.findOne({
         username : username,
         password : password

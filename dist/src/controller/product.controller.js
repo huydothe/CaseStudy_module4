@@ -12,19 +12,27 @@ class ProductController {
         res.render('admin/form', { categories: categories });
     }
     async store(req, res, next) {
-        let data = req.body;
-        let product = new products_model_1.default({
-            name: data.name,
-            price: data.price,
-            author: data.author,
-            made_in: data.made_in,
-            description: data.description,
-            category: data.category
-        });
-        await product.save();
-        res.redirect('/admin/list/product');
+        let files = req.files;
+        console.log(req.body);
+        console.log(files);
+        if (files) {
+            let product = req.body;
+            if (files.image && product.name) {
+                let image = files.image;
+                image.mv('./src/public/storage/' + image.name);
+                product.image = 'storage/' + image.name;
+                const products = new products_model_1.default(product);
+                await products.save();
+                res.redirect(301, '/shop');
+            }
+            else {
+                res.render('error');
+            }
+        }
+        else {
+            res.render('error');
+        }
     }
-    ;
     async productList(req, res, next) {
         let product = await products_model_1.default.find().populate('category');
         res.render('admin/list-product', { product: product });
@@ -34,6 +42,25 @@ class ProductController {
         await products_model_1.default.findByIdAndDelete({ _id: req.params.id });
         res.redirect('/admin/list/product');
     }
+    async editProduct(req, res, next) {
+        let categories = await category_model_1.default.find();
+        let product = await products_model_1.default.findById(req.params.id);
+        res.render('admin/edit-product', { categories: categories, product: product });
+    }
+    async edit(req, res, next) {
+        let data = req.body;
+        let product = {
+            name: data.name,
+            price: data.price,
+            author: data.author,
+            made_in: data.made_in,
+            description: data.description,
+            category: data.category
+        };
+        await products_model_1.default.findByIdAndUpdate(req.params.id, product);
+        res.redirect('/admin/list/product');
+    }
+    ;
 }
 exports.ProductController = ProductController;
 //# sourceMappingURL=product.controller.js.map

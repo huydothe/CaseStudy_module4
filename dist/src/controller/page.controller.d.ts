@@ -5,7 +5,7 @@ export declare class PageController {
     showBlog(req: Request, res: Response, next: NextFunction): void;
     showContact(req: Request, res: Response, next: NextFunction): void;
     showBlogDetail(req: Request, res: Response, next: NextFunction): void;
-    showShop(req: Request, res: Response, next: NextFunction): void;
+    showShop(req: Request, res: Response, next: NextFunction): Promise<void>;
     showMenShop(req: Request, res: Response, next: NextFunction): void;
     showWomenShop(req: Request, res: Response, next: NextFunction): void;
     showKidsShop(req: Request, res: Response, next: NextFunction): void;

@@ -29,7 +29,6 @@ wedRouter.get('/page/check-out', (req, res, next)=>{
     page.checkOut(req, res, next);
 });
 
-
 wedRouter.get('/shop', (req, res, next)=>{
     page.showShop(req, res, next);
 });

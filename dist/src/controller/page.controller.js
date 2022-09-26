@@ -1,6 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PageController = void 0;
+const products_model_1 = __importDefault(require("../model/products.model"));
 class PageController {
     constructor() {
     }
@@ -20,8 +24,9 @@ class PageController {
         res.render('page/blog-detail');
     }
     ;
-    showShop(req, res, next) {
-        res.render('page/shop');
+    async showShop(req, res, next) {
+        let product = await products_model_1.default.find();
+        res.render('page/shop', { product: product });
     }
     ;
     showMenShop(req, res, next) {

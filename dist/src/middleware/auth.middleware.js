@@ -17,6 +17,7 @@ passport_1.default.deserializeUser(function (user, cb) {
     });
 });
 passport_1.default.use(new passport_local_1.Strategy(async function verify(username, password, cb) {
+    console.log('check');
     let userLogin = await user_models_1.UserModel.findOne({
         username: username,
         password: password

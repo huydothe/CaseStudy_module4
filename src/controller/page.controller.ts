@@ -1,10 +1,12 @@
 import {Request,Response,NextFunction} from "express";
+import ProductModel from "../model/products.model";
 
 export class PageController {
     constructor() {
     }
 
     showHomePage(req: Request, res: Response, next: NextFunction) {
+
         res.render('page/index');
     };
 
@@ -20,8 +22,9 @@ export class PageController {
         res.render('page/blog-detail');
     };
 
-    showShop(req: Request, res: Response, next: NextFunction){
-        res.render('page/shop');
+    async showShop(req: Request, res: Response, next: NextFunction){
+        let product = await ProductModel.find();
+        res.render('page/shop', {product : product});
     };
 
     showMenShop(req: Request, res: Response, next: NextFunction){

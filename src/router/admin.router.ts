@@ -5,8 +5,15 @@ import multer from "multer";
 import {AdminController} from "../controller/admin.controller";
 import {ProductController} from "../controller/product.controller";
 import {CheckPermissionMiddleware} from "../middleware/checkPermission.middleware";
-
-const upload = multer();
+// const storage =   multer.diskStorage({
+//     destination: function (req, file, callback) {
+//         callback(null, './src/public/uploads');
+//     },
+//     filename: function (req, file, callback) {
+//         callback(null, file.originalname);
+//     }
+// });
+// const upload = multer({ storage : storage});
 const admin = new AdminController();
 const product = new ProductController();
 const permission = new CheckPermissionMiddleware();
@@ -22,7 +29,7 @@ adminRouter.get('/admin/create/product', (req, res, next) => {
     });
 });
 
-adminRouter.post('/admin/create/product',upload.single('image'), (req, res, next)=>{
+adminRouter.post('/admin/create/product', (req, res, next)=>{
     product.store(req,res,next).catch(err=>{
         console.log(err.message)
     })
@@ -36,6 +43,18 @@ adminRouter.get('/admin/list/product',(req, res, next)=>{
 
 adminRouter.get('/admin/product/:id/delete',(req, res, next)=>{
     product.deleteProduct(req,res,next).catch(err=>{
+        console.log(err.message)
+    })
+})
+
+adminRouter.get('/admin/product/:id/update',(req, res, next)=>{
+    product.editProduct(req,res,next).catch(err=>{
+        console.log(err.message)
+    })
+});
+
+adminRouter.post('/admin/product/:id/update', (req, res, next)=>{
+    product.edit(req,res,next).catch(err=>{
         console.log(err.message)
     })
 })
