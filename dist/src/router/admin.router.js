@@ -8,9 +8,11 @@ const adminRouter = express_1.default.Router();
 const multer_1 = __importDefault(require("multer"));
 const admin_controller_1 = require("../controller/admin.controller");
 const product_controller_1 = require("../controller/product.controller");
+const checkPermission_middleware_1 = require("../middleware/checkPermission.middleware");
 const upload = (0, multer_1.default)();
 const admin = new admin_controller_1.AdminController();
 const product = new product_controller_1.ProductController();
+const permission = new checkPermission_middleware_1.CheckPermissionMiddleware();
 adminRouter.get('/admin/list', (req, res, next) => {
     admin.showAdminPage(req, res, next);
 });

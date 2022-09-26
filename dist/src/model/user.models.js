@@ -38,10 +38,7 @@ const userSchema = new mongoose_1.Schema({
     },
     facebook_id: String,
     google_id: String,
-    role: {
-        type: mongoose_1.Schema.Types.ObjectId,
-        ref: 'Role'
-    },
+    role: String
 });
 const UserModel = mongoose_1.default.model("user", userSchema);
 exports.UserModel = UserModel;

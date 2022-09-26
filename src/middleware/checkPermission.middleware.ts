@@ -13,7 +13,7 @@ export class CheckPermissionMiddleware{
         if(roleUser === 'admin'){
             next()
         }else {
-
+            res.redirect('/error/403')
         }
     };
 }

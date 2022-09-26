@@ -14,10 +14,7 @@ const userSchema = new Schema<IUser>({
     },
     facebook_id: String,
     google_id: String,
-    role: {
-        type : Schema.Types.ObjectId,
-        ref : 'Role'
-    },
+    role: String
 });
 
 const UserModel = mongoose.model<IUser>("user", userSchema);

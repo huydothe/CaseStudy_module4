@@ -1,15 +1,18 @@
 import express from "express";
+import {Request,Response,NextFunction} from "express";
 const adminRouter = express.Router();
 import multer from "multer";
 import {AdminController} from "../controller/admin.controller";
 import {ProductController} from "../controller/product.controller";
+import {CheckPermissionMiddleware} from "../middleware/checkPermission.middleware";
 
 const upload = multer();
 const admin = new AdminController();
 const product = new ProductController();
+const permission = new CheckPermissionMiddleware();
 
 
-adminRouter.get('/admin/list', (req, res,next) => {
+adminRouter.get('/admin/list',(req, res,next) => {
     admin.showAdminPage(req,res,next);
 });
 

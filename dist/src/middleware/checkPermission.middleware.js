@@ -12,6 +12,7 @@ class CheckPermissionMiddleware {
             next();
         }
         else {
+            res.redirect('/error/403');
         }
     }
     ;

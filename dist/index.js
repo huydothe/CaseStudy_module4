@@ -36,6 +36,10 @@ app.use((0, express_session_1.default)({
     saveUninitialized: false,
 }));
 app.use(passport_1.default.authenticate('session'));
+app.use(function (req, res, next) {
+    res.locals.currentUser = req.user;
+    next();
+});
 app.use('/', web_router_1.default);
 app.use('/', admin_router_1.default);
 app.use('/', auth_router_1.default);

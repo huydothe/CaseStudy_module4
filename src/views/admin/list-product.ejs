@@ -83,7 +83,7 @@
                         <td><%= item.price %></td>
                         <td><%= item.author %></td>
                         <td><%= item.made_in %></td>
-                        <td><%= item.category + '' %></td>
+                        <td><%= item.category.name + '' %></td>
                         <td><a href="/admin/product/<%=item._id%>/delete" class="btn btn-danger">Delete</a></td>
                     </tr>
                 <%})%>
