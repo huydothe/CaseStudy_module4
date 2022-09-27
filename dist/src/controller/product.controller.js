@@ -34,8 +34,9 @@ class ProductController {
         }
     }
     async productList(req, res, next) {
+        let categories = await category_model_1.default.find();
         let product = await products_model_1.default.find().populate('category');
-        res.render('admin/list-product', { product: product });
+        res.render('admin/product-list', { categories: categories, product: product });
     }
     ;
     async deleteProduct(req, res, next) {
